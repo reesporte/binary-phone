@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            turn your phone number into binary
+        </title>
+        <script>
+            function isNumeric(value) {
+            for (let i = 0; i < 10; i++) {
+                if (value == i) {
+                    return true;
+                }
+            }
+            return false;
+        };
+        function dec2Bin(decimal) {
+            binary = "";
+            while (decimal > 0) {
+                binary += decimal % 2;
+                decimal = Math.floor(decimal / 2);
+            }
+            return binary;
+        };
+        function binarizePhoneNumber(phoneNumber) {
+            p = "";
+            for (let i = 0; i < phoneNumber.length; i++) {
+                const c = phoneNumber[i];
+                if (isNumeric(c)) {
+                    p += c;
+                }
+            }
+            return dec2Bin(p);
+        }
+        </script>
+        <style>
+            body {
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: blanchedalmond;
+            color: #000050;
+            font-family: sans-serif;
+        }
+        button {
+            margin: 10px;
+            background-color: bisque;
+            color: #000050;
+            border: 1px dotted;
+        }
+        button:hover {
+            cursor: pointer;
+            background-color: rgb(221, 198, 170);
+        }
+        h1 {
+            display: inline;
+            margin-right: 10px;
+        }
+        div {
+            text-align: center;
+            margin-bottom: 1em;
+        }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>
+                phone
+            </h1>
+            <img src="phone.svg" alt="old looking mobile phone" width="50">
+        </div>
+        <div>
+            <input type="number" name="phone" id="phone" value="8675309">
+            <button onclick="document.getElementById(&#39;binary&#39;).innerHTML = binarizePhoneNumber(document.getElementById(&#39;phone&#39;).value)">
+                binarize phone number
+            </button>
+        </div>
+        <div>
+            <code id="binary">
+            </code>
+        </div>
+    </body>
+</html>
